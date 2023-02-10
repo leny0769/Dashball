@@ -6,37 +6,46 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] private float movementSpeed = 2f;
-    private Rigidbody2D _rigidbody;
-    private Vector2 movementDirection;
+    [SerializeField] private float movementSpeed;
+    //private Rigidbody2D _rigidbody;
+    private Vector2 moveInputValue;
     float AxisX, AxisY;
 
     // Start is called before the first frame update
     void Start()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        //_rigidbody = GetComponent<Rigidbody2D>();
     }
 
-
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        movementDirection = new Vector2(AxisX, AxisY);
-        movementDirection.Normalize();
-
-        transform.Translate(movementDirection * movementSpeed * Time.deltaTime);
+        Moving();
     }
 
+    void Moving()
+    {
+        transform.Translate(moveInputValue * movementSpeed * Time.deltaTime);
+    }
 
-    public void OnHorizontal(InputValue  val)
+    public void OnMoveHorizontal(InputValue  val)
     {
         AxisX = val.Get<float>();
+        moveInputValue = new Vector2(AxisX, AxisY);
+        moveInputValue.Normalize();
     }
 
 
-    public void OnVertical(InputValue val)
+    public void OnMoveVertical(InputValue val)
     {
         AxisY = val.Get<float>();
+        moveInputValue = new Vector2(AxisX, AxisY);
+        moveInputValue.Normalize();
+    }
+
+    public void OnMoveStick(InputValue val)
+    {
+        moveInputValue = val.Get<Vector2>();
+        Debug.Log(moveInputValue);
     }
 
 }
