@@ -5,16 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-
     [SerializeField] private float movementSpeed;
-    //private Rigidbody2D _rigidbody;
     private Vector2 moveInputValue;
     float AxisX, AxisY;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        //_rigidbody = GetComponent<Rigidbody2D>();
+
     }
 
     private void FixedUpdate()
@@ -22,12 +20,12 @@ public class PlayerController : MonoBehaviour
         Moving();
     }
 
-    void Moving()
+    private void Moving()
     {
         transform.Translate(moveInputValue * movementSpeed * Time.deltaTime);
     }
 
-    public void OnMoveHorizontal(InputValue  val)
+    private void OnMoveHorizontal(InputValue  val)
     {
         AxisX = val.Get<float>();
         moveInputValue = new Vector2(AxisX, AxisY);
@@ -35,14 +33,14 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void OnMoveVertical(InputValue val)
+    private void OnMoveVertical(InputValue val)
     {
         AxisY = val.Get<float>();
         moveInputValue = new Vector2(AxisX, AxisY);
         moveInputValue.Normalize();
     }
 
-    public void OnMoveStick(InputValue val)
+    private void OnMoveStick(InputValue val)
     {
         moveInputValue = val.Get<Vector2>();
         Debug.Log(moveInputValue);
