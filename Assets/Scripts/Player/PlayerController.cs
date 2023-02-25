@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float movementSpeed;
 
-    private Vector2 move; //
+    private Vector2 move;
+    private Vector2 attack;
 
 
     //points d'accroche des attaques
@@ -32,7 +33,18 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Move();
+        Attack();
+    }
+
+    private void Move()
+    {
         rb.MovePosition(rb.position + move * Time.fixedDeltaTime * movementSpeed); //moves according to OnMove actions
+    }
+
+    private void Attack()
+    {
+        
     }
 
     private void OnMove(InputValue val)  //Listening movement inputs (zqsd/wasd)
@@ -40,6 +52,10 @@ public class PlayerController : MonoBehaviour
         move = val.Get<Vector2>();
     }
 
+    private void OnAttack(InputValue val)
+    {
+        attack = val.Get<Vector2>();
+    }
 
 
    /* private void OnMoveStick(InputValue val)   //à tester avec une manette si ça fonctionne sans ça alors ça dégage <3

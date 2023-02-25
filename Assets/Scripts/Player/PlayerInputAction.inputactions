@@ -43,12 +43,12 @@
                 },
                 {
                     "name": "Attack",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "fa392f20-6792-4cbd-a4a6-a4bbcac06e5b",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "ControllerAttack",
@@ -306,7 +306,7 @@
                 {
                     "name": "up",
                     "id": "4f6c279c-4b0e-47a4-b5b1-623565006612",
-                    "path": "",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -317,7 +317,7 @@
                 {
                     "name": "down",
                     "id": "a9bba449-9352-45fa-8bbb-9702a1eb178d",
-                    "path": "",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -328,7 +328,7 @@
                 {
                     "name": "left",
                     "id": "134f570e-ce2f-42bb-92ba-add309eeb1c0",
-                    "path": "",
+                    "path": "<Gamepad>/dpad/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -339,7 +339,7 @@
                 {
                     "name": "right",
                     "id": "25b20b90-3795-4409-b866-bd0e0e025a00",
-                    "path": "",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
