@@ -11,7 +11,7 @@ public class BallBehavior : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        speed = new Vector2(3, -5);
+        speed = new Vector2(0, 0);
     }
 
 

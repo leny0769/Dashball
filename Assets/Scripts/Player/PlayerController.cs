@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 move;
     private Vector2 attack;
 
-
     //points d'accroche des attaques
     public Transform attackPointUp;
     public Transform attackPointUpRight;
@@ -22,9 +21,8 @@ public class PlayerController : MonoBehaviour
     public Transform attackPointLeft;
     public Transform attackPointUpLeft;
 
-    private float attackRadius = 2.0f; //rayon dans lequel la balle peut être frapper
+    public float attackRadius = 0.5f; //rayon dans lequel la balle peut être frapper
     public LayerMask ballLayer;
-
 
     private void Start()
     {
@@ -32,10 +30,11 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
+    { 
         Move();
         Attack();
     }
+
 
     private void Move()
     {
@@ -44,73 +43,64 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
-        
+        Collider2D[] hit = null;
+
+        if (attack.x == 0 && attack.y == 1) //Up
+        {
+            hit = Physics2D.OverlapCircleAll(attackPointUp.position, attackRadius, ballLayer);
+        }
+        else if (attack.x > 0 && attack.y > 0) //Up Right
+        {
+            hit = Physics2D.OverlapCircleAll(attackPointUpRight.position, attackRadius, ballLayer);
+        }
+        else if (attack.x == 1 && attack.y == 0) //Right
+        {
+            hit = Physics2D.OverlapCircleAll(attackPointRight.position, attackRadius, ballLayer);
+        }
+        else if (attack.x > 0 && attack.y < 0) //Down Right
+        {
+            hit = Physics2D.OverlapCircleAll(attackPointDownRight.position, attackRadius, ballLayer);
+        }
+        else if (attack.x == 0 && attack.y == -1) //Down
+        {
+            hit = Physics2D.OverlapCircleAll(attackPointDown.position, attackRadius, ballLayer);
+        }
+        else if (attack.x < 0 && attack.y < 0) //Down Left
+        {
+            hit = Physics2D.OverlapCircleAll(attackPointDownLeft.position, attackRadius, ballLayer);
+        }
+        else if (attack.x == 0 && attack.y == -1) //Left
+        {
+            hit = Physics2D.OverlapCircleAll(attackPointLeft.position, attackRadius, ballLayer);
+        }
+        else if (attack.x < 0 && attack.y > 0) //Up Left
+        {
+            hit = Physics2D.OverlapCircleAll(attackPointUpLeft.position, attackRadius, ballLayer);
+        }
+        if (hit != null)
+        {
+            foreach (Collider2D ball in hit)
+            {
+                if (ball.gameObject.tag == "Ball")
+                {
+                    Debug.Log("ça marche " + ball.gameObject.name);
+                    
+                }
+            }
+        }
+
     }
 
-    private void OnMove(InputValue val)  //Listening movement inputs (zqsd/wasd)
+    private void OnMove(InputValue val)  //Listening movement inputs (zqsd/wasd + left stick)
     {
         move = val.Get<Vector2>();
     }
 
-    private void OnAttack(InputValue val)
+    private void OnAttack(InputValue val) //Listening attack inputs (arrows
     {
         attack = val.Get<Vector2>();
     }
 
-
-   /* private void OnMoveStick(InputValue val)   //à tester avec une manette si ça fonctionne sans ça alors ça dégage <3
-    {
-        move = val.Get<Vector2>();
-    }*/
-
-
-
-    /*void Hit()
-    {
-        Collider2D[] hit;
-        if (animator.GetFloat("Vertical") >= 0 && animator.GetFloat("Horizontal") == 0) // 12h
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointUp.position, attackRadius, ballLayer);
-        }
-       else if (animator.GetFloat("Vertical") >= 0 && animator.GetFloat("Horizontal") >= 0) // 1h30
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointUpRight.position, attackRadius, ballLayer);
-        }
-       else if (animator.GetFloat("Vertical") == 0 && animator.GetFloat("Horizontal") >= 0) // 3h
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointRight.position, attackRadius, ballLayer);
-        }
-        else if (animator.GetFloat("Vertical") <= 0 && animator.GetFloat("Horizontal") >= 0) // 4h30
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointDownRight.position, attackRadius, ballLayer);
-        }
-        else if (animator.GetFloat("Vertical") <= 0 && animator.GetFloat("Horizontal") == 0) // 6h
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointDown.position, attackRadius, ballLayer);
-        }
-        else if (animator.GetFloat("Vertical") <= 0 && animator.GetFloat("Horizontal") <= 0) // 7h30
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointDownLeft.position, attackRadius, ballLayer);
-        }
-        else if (animator.GetFloat("Vertical") == 0 && animator.GetFloat("Horizontal") <= 0) // 9h
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointLeft.position, attackRadius, ballLayer);
-        }
-        else if (animator.GetFloat("Vertical") >= 0 && animator.GetFloat("Horizontal") <= 0) // 10h30
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointUpLeft.position, attackRadius, ballLayer);
-        }
-
-        foreach (Collider2D ball in hit)
-        {
-            if(ball.gameObject.tag == "Ball")
-            {
-                Debug.Log("ça marche" + ball.gameObject.name);
-            }
-        }
-
-        
-    }*/
 
 }
 
