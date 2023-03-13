@@ -12,10 +12,22 @@ EditorUserSettings:
       value: 515250075c0c595e5f5a5e71122159444e4e4a2f7a7d7f602f284d66b4b76661
       flags: 0
     RecentlyUsedSceneGuid-2:
-      value: 53550300070c0b5d55580f7249770e13154e4028292924657c7d4862e7b8326e
+      value: 5406030300545e08580b5b274077594617161b2f7b7d76352c714f35e1b8636a
       flags: 0
     RecentlyUsedSceneGuid-3:
-      value: 5406030300545e08580b5b274077594617161b2f7b7d76352c714f35e1b8636a
+      value: 53550300070c0b5d55580f7249770e13154e4028292924657c7d4862e7b8326e
+      flags: 0
+    vcPerforcePassword:
+      value: 225c55010254045a1d0a0e7449
+      flags: 1
+    vcPerforceServer:
+      value: 1042585c0d500552150f423701225c5e1516427b7a7e70
+      flags: 0
+    vcPerforceUsername:
+      value: 0f5c51121f520c49
+      flags: 0
+    vcPerforceWorkspace:
+      value: 0f5c51121f520c4932232e125d275a5d3a121633137072687a
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650

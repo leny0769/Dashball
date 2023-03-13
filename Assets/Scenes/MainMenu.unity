@@ -2030,7 +2030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4078aae3d4149439f1198bd95ca317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: SampleScene
+  levelToLoad: CharacterSelectionMenu
   settingsWindow: {fileID: 47811080}
 --- !u!114 &1495612433
 MonoBehaviour:
