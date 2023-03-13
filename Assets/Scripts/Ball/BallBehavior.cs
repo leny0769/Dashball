@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BallBehavior : MonoBehaviour
 {
-    Vector2 speed;
-    Rigidbody2D rb;
-
+    private Vector2 speed;
+    private Rigidbody2D rb;
+    private bool isHit=false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        speed = new Vector2(0, 0);
+        speed = new Vector2(5, 3);
     }
 
 
@@ -39,4 +39,23 @@ public class BallBehavior : MonoBehaviour
             }
         }
     }
+    public bool GetHit()
+    { 
+        return isHit;
+    }
+    public void SetHit(bool hit)
+    {
+        isHit = hit;
+    }
+
+    public Vector2 GetSpeed()
+    {
+        return speed;
+    }
+
+    public void SetSpeed(Vector2 spd)
+    {
+        speed = spd;
+    }
+
 }

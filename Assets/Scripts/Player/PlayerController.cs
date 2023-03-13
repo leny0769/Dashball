@@ -7,19 +7,13 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField] private float movementSpeed;
+    public BallBehavior ball;
 
     private Vector2 move;
     private Vector2 attack;
 
     //points d'accroche des attaques
-    public Transform attackPointUp;
-    public Transform attackPointUpRight;
-    public Transform attackPointRight;
-    public Transform attackPointDownRight;
-    public Transform attackPointDown;
-    public Transform attackPointDownLeft;
-    public Transform attackPointLeft;
-    public Transform attackPointUpLeft;
+    public Transform attackPoint;
 
     public float attackRadius = 0.5f; //rayon dans lequel la balle peut être frapper
     public LayerMask ballLayer;
@@ -30,11 +24,21 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate()
-    { 
+    {
         Move();
         Attack();
     }
 
+    private void OnMove(InputValue val)  //Listening movement inputs (zqsd/wasd + left stick)
+    {
+        move = val.Get<Vector2>();
+    }
+
+    private void OnAttack(InputValue val) //Listening attack inputs (arrows)
+    {
+        attack = val.Get<Vector2>();
+        attack.Normalize();
+    }
 
     private void Move()
     {
@@ -43,63 +47,39 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
+        Vector2 mem = attackPoint.position;
+        Vector2 vecAttack = attackPoint.TransformPoint(Vector3.zero);
+        vecAttack += attack;
+        attackPoint.transform.position = vecAttack;
         Collider2D[] hit = null;
-
-        if (attack.x == 0 && attack.y == 1) //Up
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointUp.position, attackRadius, ballLayer);
-        }
-        else if (attack.x > 0 && attack.y > 0) //Up Right
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointUpRight.position, attackRadius, ballLayer);
-        }
-        else if (attack.x == 1 && attack.y == 0) //Right
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointRight.position, attackRadius, ballLayer);
-        }
-        else if (attack.x > 0 && attack.y < 0) //Down Right
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointDownRight.position, attackRadius, ballLayer);
-        }
-        else if (attack.x == 0 && attack.y == -1) //Down
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointDown.position, attackRadius, ballLayer);
-        }
-        else if (attack.x < 0 && attack.y < 0) //Down Left
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointDownLeft.position, attackRadius, ballLayer);
-        }
-        else if (attack.x == 0 && attack.y == -1) //Left
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointLeft.position, attackRadius, ballLayer);
-        }
-        else if (attack.x < 0 && attack.y > 0) //Up Left
-        {
-            hit = Physics2D.OverlapCircleAll(attackPointUpLeft.position, attackRadius, ballLayer);
-        }
+        hit = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, ballLayer);
+        attackPoint.position = mem;
+        
         if (hit != null)
         {
-            foreach (Collider2D ball in hit)
+            foreach (Collider2D balle in hit)
             {
-                if (ball.gameObject.tag == "Ball")
+                if (balle.gameObject.tag == "Ball")
                 {
-                    Debug.Log("ça marche " + ball.gameObject.name);
-                    
+                    if (!ball.GetHit())
+                    {
+                        ball.SetHit(true);
+                        ball.SetSpeed(new Vector2(-1.5f*ball.GetSpeed().x, -1.5f*ball.GetSpeed().y));
+                        StartCoroutine(Hit());
+                        
+                    }
                 }
             }
         }
-
     }
 
-    private void OnMove(InputValue val)  //Listening movement inputs (zqsd/wasd + left stick)
+    IEnumerator Hit()
     {
-        move = val.Get<Vector2>();
+        yield return new WaitForSeconds(0.5f);
+        ball.SetHit(false);
+
     }
 
-    private void OnAttack(InputValue val) //Listening attack inputs (arrows
-    {
-        attack = val.Get<Vector2>();
-    }
 
 
 }
