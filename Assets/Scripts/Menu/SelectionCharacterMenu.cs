@@ -9,6 +9,7 @@ public class SelectionCharacterMenu : MonoBehaviour
 
     public void StartGame()
     {
+        Config.Instance.save();
         SceneManager.LoadScene(levelToLoad);
     }
 

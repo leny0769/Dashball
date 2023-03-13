@@ -9,7 +9,7 @@
                     "name": "MoveHorizontal",
                     "type": "Value",
                     "id": "d198b13c-bf80-4ee1-8956-43aa929e7eb9",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
