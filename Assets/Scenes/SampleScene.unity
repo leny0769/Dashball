@@ -815,6 +815,10 @@ PrefabInstance:
       value: Ball
       objectReference: {fileID: 0}
     - target: {fileID: 6891111542957826423, guid: 992d49e31874c6340ab90ce9d0f3e1f2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891111542957826423, guid: 992d49e31874c6340ab90ce9d0f3e1f2, type: 3}
       propertyPath: m_TagString
       value: Ball
       objectReference: {fileID: 0}

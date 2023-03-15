@@ -5,47 +5,80 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private Rigidbody2D rb;
     [SerializeField] private float movementSpeed;
-    private Vector2 moveInputValue;
-    float AxisX, AxisY;
+    public BallBehavior ball;
 
-    // Start is called before the first frame update
+    private Vector2 move;
+    private Vector2 attack;
+
+    //points d'accroche des attaques
+    public Transform attackPoint;
+
+    public float attackRadius = 0.5f; //rayon dans lequel la balle peut être frapper
+    public LayerMask ballLayer;
+
     private void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
+        ball = GameObject.Find("Ball").GetComponent<BallBehavior>();
     }
 
     private void FixedUpdate()
     {
-        Moving();
+        Move();
+        Attack();
     }
 
-    private void Moving()
+    private void OnMove(InputValue val)  //Listening movement inputs (zqsd/wasd + left stick)
     {
-        transform.Translate(moveInputValue * movementSpeed * Time.deltaTime);
+        move = val.Get<Vector2>();
     }
 
-    private void OnMoveHorizontal(InputValue  val)
+    private void OnAttack(InputValue val) //Listening attack inputs (arrows)
     {
-        AxisX = val.Get<float>();
-        moveInputValue = new Vector2(AxisX, AxisY);
-        moveInputValue.Normalize();
+        attack = val.Get<Vector2>();
+        attack.Normalize();
     }
 
-
-    private void OnMoveVertical(InputValue val)
+    private void Move()
     {
-        AxisY = val.Get<float>();
-        moveInputValue = new Vector2(AxisX, AxisY);
-        moveInputValue.Normalize();
+        rb.MovePosition(rb.position + move * Time.fixedDeltaTime * movementSpeed); //moves according to OnMove actions
     }
 
-    private void OnMoveStick(InputValue val)
+    private void Attack()
     {
-        moveInputValue = val.Get<Vector2>();
-        Debug.Log(moveInputValue);
+        Vector2 mem = attackPoint.position;
+        Vector2 vecAttack = attackPoint.TransformPoint(Vector3.zero);
+        vecAttack += attack;
+        attackPoint.transform.position = vecAttack;
+        Collider2D[] hit = null;
+        hit = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, ballLayer);
+        attackPoint.position = mem;
+
+        if (hit != null)
+        {
+            foreach (Collider2D balle in hit)
+            {
+                if (balle.gameObject.tag == "Ball")
+                {
+                    if (!ball.GetHit())
+                    {
+                        ball.SetHit(true);
+                        ball.SetSpeed(new Vector2(-1.5f * ball.GetSpeed().x, -1.5f * ball.GetSpeed().y));
+                        StartCoroutine(Hit());
+
+                    }
+                }
+            }
+        }
     }
 
-    
+    IEnumerator Hit()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ball.SetHit(false);
 
+    }
 }
+
