@@ -26,16 +26,21 @@ public class BallBehavior : MonoBehaviour
             Destroy(other.gameObject);
         else //obstacle
         {
-            Vector3 hit = other.contacts[0].normal;
+            Vector2 hit = other.contacts[0].normal;
             float angle = Vector2.Angle(hit, Vector2.up);
 
             if (Mathf.Approximately(angle, 0) || Mathf.Approximately(angle, 180))
             { // top ||bottom
                 speed.y *= -1;
             }
-            if (Mathf.Approximately(angle, 90))
+            else if (Mathf.Approximately(angle, 90))
             { //sides
                 speed.x *= -1;
+            }
+            else
+            { //other angles
+                Vector2 dir = Vector2.Reflect(speed.normalized, hit);
+                speed = dir * speed.magnitude;
             }
         }
     }
