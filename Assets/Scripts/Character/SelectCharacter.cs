@@ -17,6 +17,7 @@ public class SelectCharacter : MonoBehaviour
     private GameObject name;
 
     float AxisX;
+    Vector2 Axis;
 
 
     private int selectedOption = 0;
@@ -45,10 +46,13 @@ public class SelectCharacter : MonoBehaviour
             artworkSprite = sprite.GetComponent<Image>();
             nameText = name.GetComponent<Text>();
     }
-    private void OnMoveHorizontal(InputValue  val)
+    private void OnMove(InputValue  val)
     {
+
+        Debug.Log("test");
         if(SceneManager.GetActiveScene().name == "CharacterSelectionMenu"){
-            AxisX = val.Get<float>();
+            Axis = val.Get<Vector2>();
+            AxisX = Axis.x;
             if(AxisX>0)
             {
             NextOption();
