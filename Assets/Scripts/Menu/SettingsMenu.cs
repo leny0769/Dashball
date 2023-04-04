@@ -1,21 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public AudioMixer audioMixerMusique;
-    public AudioMixer audioMixerEffetsSonores;
+    public AudioMixer audioMixer;
 
+    public Slider musiqueSlider;
+    public Slider effetsSonnoresSlider;
+
+
+    public void Start()
+    {
+        audioMixer.GetFloat("Musique", out float musiqueValueForSlider);
+        musiqueSlider.value = musiqueValueForSlider;
+
+        audioMixer.GetFloat("EffetsSonores", out float effetsSonoresValueForSlider);
+        effetsSonnoresSlider.value = effetsSonoresValueForSlider;
+    }
 
     public void SetVolumeMusique(float volume)
     {
-        audioMixerMusique.SetFloat("volume", volume);
+        audioMixer.SetFloat("Musique", volume);
     }
+
 
     public void SetVolumeEffetsSonores(float volume)
     {
-        audioMixerEffetsSonores.SetFloat("volume", volume);
+        audioMixer.SetFloat("EffetsSonores", volume);
     }
 }

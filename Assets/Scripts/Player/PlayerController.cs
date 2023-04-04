@@ -15,8 +15,11 @@ public class PlayerController : MonoBehaviour
     //points d'accroche des attaques
     public Transform attackPoint;
 
-    public float attackRadius = 0.5f; //rayon dans lequel la balle peut être frapper
+    public float attackRadius = 0.5f; //rayon dans lequel la balle peut ?tre frapper
     public LayerMask ballLayer;
+
+    public AudioSource audioSource;
+    public AudioClip sound; 
 
     private void Start()
     {
@@ -68,6 +71,7 @@ public class PlayerController : MonoBehaviour
                         ball.SetSpeed(new Vector2(-1.5f * ball.GetSpeed().x, -1.5f * ball.GetSpeed().y));
                         StartCoroutine(Hit());
 
+                        audioSource.PlayOneShot(sound);
                     }
                 }
             }
