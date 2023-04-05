@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerInvoc : MonoBehaviour
 {
 
-    private PlayerConfig playerConfig;
+    public PlayerConfig playerConfig {get; set;}
     [SerializeField]
     private SpriteRenderer artworkSprite;
     public CharacterDatabase characterDB;

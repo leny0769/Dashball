@@ -46,13 +46,12 @@ public class SelectCharacter : MonoBehaviour
             artworkSprite = sprite.GetComponent<Image>();
             nameText = name.GetComponent<Text>();
     }
-    private void OnMove(InputValue  val)
+    private void OnSelect(InputValue  val)
     {
-
-        Debug.Log("test");
         if(SceneManager.GetActiveScene().name == "CharacterSelectionMenu"){
             Axis = val.Get<Vector2>();
             AxisX = Axis.x;
+            
             if(AxisX>0)
             {
             NextOption();

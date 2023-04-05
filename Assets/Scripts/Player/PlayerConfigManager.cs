@@ -43,15 +43,19 @@ public class PlayerConfigManager : MonoBehaviour
 
 public class PlayerConfig
 {
-public PlayerConfig(PlayerInput pi){
-    index = pi.playerIndex;
-    input = pi;
-}
+    public PlayerConfig(PlayerInput pi)
+    {
+        index = pi.playerIndex;
+        input = pi;
+        win = 0;
+    }
 
-public PlayerInput input {get; set;}
+    public PlayerInput input {get; set;}
 
-public int index {get; set;}
+    public int index {get; set;}
 
-public int character {get; set;}
+    public int character {get; set;}
+
+    public int win {get; set;}
 
 }

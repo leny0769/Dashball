@@ -147,7 +147,8 @@ MonoBehaviour:
   - {fileID: 2032814646090157600}
   - {fileID: 2032814644507092242}
   - {fileID: 2032814644676097758}
-  playerPrefab: {fileID: 1873239754088462410, guid: 0516280ecc4454d4c916a7cebc3fbe2f, type: 3}
+  playerPrefab: {fileID: 6159397117343696525, guid: 0516280ecc4454d4c916a7cebc3fbe2f, type: 3}
+  level: ScoreBoard
 --- !u!114 &2032814644794088642
 MonoBehaviour:
   m_ObjectHideFlags: 0

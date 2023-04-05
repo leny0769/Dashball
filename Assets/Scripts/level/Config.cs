@@ -28,4 +28,16 @@ public class Config : MonoBehaviour
     {
         return playerConfigs;
     }
+
+    public void updatePC(PlayerConfig pc){
+        for (int i =0; i < playerConfigs.Count;i++)
+        {
+            if(playerConfigs[i].index == pc.index)
+            {
+                playerConfigs[i] = pc;
+            }
+        }
+    }
+
+
 }
