@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float movementSpeed;
     public BallBehavior ball;
 
+    private bool isSpecial = false;
+
     private Vector2 move;
     private Vector2 attack;
 
@@ -17,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     public float attackRadius = 0.5f; //rayon dans lequel la balle peut ?tre frapper
     public LayerMask ballLayer;
+
+    public int SpecialCharge = 0;
 
     public AudioSource audioSource;
     public AudioClip sound; 
@@ -44,34 +48,54 @@ public class PlayerController : MonoBehaviour
         attack.Normalize();
     }
 
+    private void OnSpecial()
+    {
+        if (SpecialCharge ==4 )
+        {
+            SpecialCharge = 0;
+            isSpecial = true;
+        }
+    }
+
     private void Move()
     {
-        rb.MovePosition(rb.position + move * Time.fixedDeltaTime * movementSpeed); //moves according to OnMove actions
+            rb.MovePosition(rb.position + move * Time.fixedDeltaTime * movementSpeed); //moves according to OnMove actions
     }
 
     private void Attack()
     {
+        // on passe la position du point d'attaque en coordonnees global pour pouvoir la sommer avec le vecteur
+        // de la fonction OnAttack puis on test s'il y a un quelconque contact
         Vector2 mem = attackPoint.position;
-        Vector2 vecAttack = attackPoint.TransformPoint(Vector3.zero);
-        vecAttack += attack;
-        attackPoint.transform.position = vecAttack;
+        Vector2 vecAttack = attackPoint.TransformPoint(Vector3.zero); 
+        vecAttack += attack; 
+        attackPoint.transform.position = vecAttack; 
         Collider2D[] hit = null;
-        hit = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, ballLayer);
-        attackPoint.position = mem;
+        hit = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, ballLayer); 
+        attackPoint.position = mem; 
 
-        if (hit != null)
+        if (hit != null) 
         {
             foreach (Collider2D balle in hit)
             {
-                if (balle.gameObject.tag == "Ball")
+                if (balle.gameObject.tag == "Ball") 
                 {
-                    if (!ball.GetHit())
+                    if (!ball.GetHit()) 
                     {
-                        ball.SetHit(true);
-                        ball.SetSpeed(new Vector2(-1.5f * ball.GetSpeed().x, -1.5f * ball.GetSpeed().y));
-                        StartCoroutine(Hit());
+                        if (!isSpecial)
+                        {
+                            //si la balle ne vient pas d'etre frapper (pour eviter qu'elle parte a mach20 apres 2s de match)
+                            //alors on la rend non frappable, l'accelere en la renvoyant dans l'autre sens, puis on la rend de nouveau frappable apres 1/2s
+                            StartCoroutine(Hit());
 
-                        audioSource.PlayOneShot(sound);
+                            if (SpecialCharge < 4) SpecialCharge++;
+
+                            audioSource.PlayOneShot(sound);
+                        }
+                        else
+                        {
+                            StartCoroutine(Special());
+                        }
                     }
                 }
             }
@@ -80,9 +104,24 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Hit()
     {
+        ball.SetHit(true);
+        ball.SetSpeed(new Vector2(-1.5f * ball.GetSpeed().x, -1.5f * ball.GetSpeed().y));
         yield return new WaitForSeconds(0.5f);
         ball.SetHit(false);
+    }
 
+    IEnumerator Special()
+    {
+        isSpecial = false;
+        Vector2 TempBallSpeed = ball.GetSpeed();
+        ball.SetSpeed(Vector2.zero);
+        ball.GetRb().gameObject.SetActive(false);
+        yield return new WaitForSeconds(1.5f);
+        ball.transform.position = -attackPoint.position;
+        TempBallSpeed *= 1.75f;
+        ball.SetSpeed(TempBallSpeed);
+        ball.GetRb().gameObject.SetActive(true);
+        Debug.Log("Time's out");
     }
 }
 

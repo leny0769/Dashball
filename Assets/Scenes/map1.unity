@@ -1795,6 +1795,10 @@ PrefabInstance:
       propertyPath: settingsWindow
       value: 
       objectReference: {fileID: 1155282050}
+    - target: {fileID: 586234735256312815, guid: 0516280ecc4454d4c916a7cebc3fbe2f, type: 3}
+      propertyPath: SpecialCharge
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6159397117343696525, guid: 0516280ecc4454d4c916a7cebc3fbe2f, type: 3}
       propertyPath: m_Name
       value: Basketitos
@@ -13016,7 +13020,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 1171.41
   field of view: 60
   orthographic: 1
   orthographic size: 5.96875

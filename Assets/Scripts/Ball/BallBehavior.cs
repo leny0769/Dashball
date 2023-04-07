@@ -11,7 +11,7 @@ public class BallBehavior : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        speed = new Vector2(5, 3);
+        speed = new Vector2(-5, 3);
     }
 
 
@@ -61,6 +61,16 @@ public class BallBehavior : MonoBehaviour
     public void SetSpeed(Vector2 spd)
     {
         speed = spd;
+    }
+
+    public Rigidbody2D GetRb()
+    {
+        return rb;
+    }
+
+    public void SetRb(Rigidbody2D Nrb)
+    {
+        rb = Nrb;
     }
 
 }
