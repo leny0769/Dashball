@@ -6,8 +6,12 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Transform transform;
     [SerializeField] private float movementSpeed;
     public BallBehavior ball;
+    private Animator animator;
+
+    private bool isAttacking = false;
 
     private Vector2 move;
     private Vector2 attack;
@@ -24,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        transform = GetComponent<Transform>();
         ball = GameObject.Find("Ball").GetComponent<BallBehavior>();
     }
 
@@ -42,11 +48,22 @@ public class PlayerController : MonoBehaviour
     {
         attack = val.Get<Vector2>();
         attack.Normalize();
+        if (!isAttacking)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -90 + Mathf.Atan2(attack.y, attack.x) * Mathf.Rad2Deg);
+            animator.SetTrigger("Attack");
+        }
+        isAttacking = true;
     }
 
     private void Move()
     {
         rb.MovePosition(rb.position + move * Time.fixedDeltaTime * movementSpeed); //moves according to OnMove actions
+        if (!isAttacking)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -90 + Mathf.Atan2(move.y, move.x) * Mathf.Rad2Deg);
+        }
+        
     }
 
     private void Attack()
@@ -68,7 +85,8 @@ public class PlayerController : MonoBehaviour
                     if (!ball.GetHit())
                     {
                         ball.SetHit(true);
-                        ball.SetSpeed(new Vector2(-1.5f * ball.GetSpeed().x, -1.5f * ball.GetSpeed().y));
+                        //ball.SetSpeed(new Vector2(-1.5f * ball.GetSpeed().x, -1.5f * ball.GetSpeed().y));
+                        ball.SetSpeed(new Vector2(1.5f * attack.x * ball.GetSpeed().magnitude, 1.5f * attack.y * ball.GetSpeed().magnitude));
                         StartCoroutine(Hit());
 
                         audioSource.PlayOneShot(sound);
@@ -84,5 +102,10 @@ public class PlayerController : MonoBehaviour
         ball.SetHit(false);
 
     }
+    public void endAttack()
+    {
+        isAttacking = false;
+    }
 }
+
 
