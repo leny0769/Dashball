@@ -116,7 +116,9 @@ public class PlayerController : MonoBehaviour
         Vector2 TempBallSpeed = ball.GetSpeed();
         ball.SetSpeed(Vector2.zero);
         ball.GetRb().gameObject.SetActive(false);
+        movementSpeed = 10;
         yield return new WaitForSeconds(1.5f);
+        movementSpeed = 5;
         ball.transform.position = -attackPoint.position;
         TempBallSpeed *= 1.75f;
         ball.SetSpeed(TempBallSpeed);

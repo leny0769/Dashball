@@ -22,6 +22,11 @@ public class BarreEnergie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.GetComponent<Slider>().value = 0.2f;
+        //gameObject.GetComponent<Slider>().value = 0.2f;
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if(player.GetComponent<PlayerInvoc>().playerConfig.index == (id - 1))
+                gameObject.GetComponent<Slider>().value = player.GetComponent<PlayerController>().SpecialCharge;
+        }
     }
 }

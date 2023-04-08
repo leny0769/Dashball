@@ -1799,6 +1799,10 @@ PrefabInstance:
       propertyPath: SpecialCharge
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2143214372603148144, guid: 0516280ecc4454d4c916a7cebc3fbe2f, type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6159397117343696525, guid: 0516280ecc4454d4c916a7cebc3fbe2f, type: 3}
       propertyPath: m_Name
       value: Basketitos
@@ -13067,7 +13071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 16
-  m_RefResolutionX: 320
+  m_RefResolutionX: 340
   m_RefResolutionY: 180
   m_UpscaleRT: 0
   m_PixelSnapping: 0
