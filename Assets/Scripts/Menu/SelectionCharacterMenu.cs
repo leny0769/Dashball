@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SelectionCharacterMenu : MonoBehaviour
 {
-    public string[] level;
+    //public string[] level;
     private PlayerConfig[] playerConfigs;
     
     public void StartGame()
@@ -13,9 +13,10 @@ public class SelectionCharacterMenu : MonoBehaviour
         
         if(SceneManager.GetActiveScene().name == "CharacterSelectionMenu"){ Config.Instance.save();}
         //party win condition   
-         //load one random level
-        int index = Random.Range(0, level.Length);
-        string levelToLoad = level[index];
+        //load one random level
+        //int index = Random.Range(0, level.Length);
+
+        string levelToLoad = GameManage.mapScene;
         
         if(SceneManager.GetActiveScene().name == "ScoreBoard")
         {

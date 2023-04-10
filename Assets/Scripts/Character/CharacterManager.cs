@@ -14,6 +14,7 @@ public class CharacterManager : MonoBehaviour
     private int selectedOption = 0;
     private int index;
     private PlayerInput pi;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -46,6 +46,7 @@ public class SelectCharacter : MonoBehaviour
             artworkSprite = sprite.GetComponent<Image>();
             nameText = name.GetComponent<Text>();
     }
+
     private void OnSelect(InputValue  val)
     {
         if(SceneManager.GetActiveScene().name == "CharacterSelectionMenu"){
