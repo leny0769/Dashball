@@ -1396,4 +1396,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813685fc2e09e4eb8ac1565c3482907f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: CharacterSelectionMenu
+  sceneToLoad: map1

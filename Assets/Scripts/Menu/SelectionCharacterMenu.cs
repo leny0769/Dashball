@@ -16,7 +16,7 @@ public class SelectionCharacterMenu : MonoBehaviour
         //load one random level
         //int index = Random.Range(0, level.Length);
 
-        string levelToLoad = GameManage.mapScene;
+        string levelToLoad ="MapSelectionMenu";
         
         if(SceneManager.GetActiveScene().name == "ScoreBoard")
         {
