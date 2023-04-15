@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character:
   - characterName: Basebalinho
-    characterSprite: {fileID: 21300000, guid: 4754eda40570906468a6659b131d534e, type: 3}
+    characterSprite: {fileID: 21300000, guid: 42dca6af2e0042a44ad4745896579838, type: 3}
+    characterAnimator: {fileID: 9100000, guid: 7516c9296bfadae43890d0013d6ae9ec, type: 2}
   - characterName: Basketitos
-    characterSprite: {fileID: 21300000, guid: e782b7e95473fc6428b995df8b16381f, type: 3}
+    characterSprite: {fileID: 21300000, guid: 78579d461c331f04bba7b629b38aad7b, type: 3}
+    characterAnimator: {fileID: 9100000, guid: 62d0c4ca2ed4f9a42ba474f9311cbbda, type: 2}
