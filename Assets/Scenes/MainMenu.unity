@@ -979,7 +979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4078aae3d4149439f1198bd95ca317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: MapSelectionMenu
+  sceneToLoad: CharacterSelectionMenu
   settingsWindow: {fileID: 47811080}
   settingsButton: {fileID: 1893532781}
   playButton: {fileID: 1690120696}
