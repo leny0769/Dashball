@@ -17,7 +17,7 @@ public class SelectionCharacterMenu : MonoBehaviour
         //int index = Random.Range(0, level.Length);
 
         string levelToLoad ="MapSelectionMenu";
-        
+        playerConfigs = Config.Instance.GetPlayerConfigs().ToArray();
         if(SceneManager.GetActiveScene().name == "ScoreBoard")
         {
             
@@ -34,7 +34,12 @@ public class SelectionCharacterMenu : MonoBehaviour
         }
     
         Debug.Log("level load : " + levelToLoad);
-        SceneManager.LoadScene(levelToLoad);
+        if(playerConfigs.Length > 1)
+            SceneManager.LoadScene(levelToLoad);
+        else
+        {
+            Debug.Log("at least 2 player");
+        }
     }
 
 }
