@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -7,12 +8,14 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject settingsWindow;
 
+    public GameObject settingsFirstButton, closeSettingsFirstButton, pauseFirstButton;
 
     void Paused()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0;
         gameIsPaused = true;
+        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
     }
 
 
@@ -47,12 +50,18 @@ public class PauseMenu : MonoBehaviour
     public void OpenSettingsWindow()
     {
         settingsWindow.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(settingsFirstButton);
     }
 
 
     public void CloseSettingsWindow()
     {
         settingsWindow.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(settingsFirstButton);
     }
 
 }

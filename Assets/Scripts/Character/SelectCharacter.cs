@@ -47,7 +47,7 @@ public class SelectCharacter : MonoBehaviour
             nameText = name.GetComponent<Text>();
     }
 
-    private void OnSelect(InputValue  val)
+    private void OnSelect(InputValue val)
     {
         if(SceneManager.GetActiveScene().name == "CharacterSelectionMenu"){
             Axis = val.Get<Vector2>();
@@ -55,12 +55,12 @@ public class SelectCharacter : MonoBehaviour
             
             if(AxisX>0)
             {
-            NextOption();
+                NextOption();
             }
             if(AxisX<0)
             {
-            BackOption();
-        }
+                BackOption();
+            }
         }
     }
 
@@ -98,20 +98,19 @@ public class SelectCharacter : MonoBehaviour
 
     }
 
-        public  GameObject FindInActiveObjectByName(string name)
+    public  GameObject FindInActiveObjectByName(string name)
     {
-
-    Transform[] objs = Resources.FindObjectsOfTypeAll<Transform>() as Transform[];
-    for (int i = 0; i < objs.Length; i++)
-    {
-        if (objs[i].hideFlags == HideFlags.None)
+        Transform[] objs = Resources.FindObjectsOfTypeAll<Transform>() as Transform[];
+        for (int i = 0; i < objs.Length; i++)
         {
-            if (objs[i].name == name)
+            if (objs[i].hideFlags == HideFlags.None)
             {
-                return objs[i].gameObject;
+                if (objs[i].name == name)
+                {
+                    return objs[i].gameObject;
+                }
             }
         }
-    }
-    return null;
+        return null;
     }
 }
