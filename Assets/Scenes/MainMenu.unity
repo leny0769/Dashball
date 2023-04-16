@@ -153,7 +153,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 6199140794342683903, guid: 009922c6695ae4f5a9ebb6844ecd56e9, type: 2}
   m_audioClip: {fileID: 8300000, guid: a67af2895cc8c415d8a8cc4779c74888, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -264,7 +264,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 306101239984821117, guid: 009922c6695ae4f5a9ebb6844ecd56e9, type: 2}
   m_audioClip: {fileID: 8300000, guid: 114c042662b3e44d9bf8a6508636c8cc, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -714,7 +714,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
 --- !u!1 &1086584340
@@ -852,17 +852,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086584340}
   m_CullTransparentMesh: 1
---- !u!114 &1124244250 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4730442685165824268, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
-  m_PrefabInstance: {fileID: 4730442685198028034}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1158918502
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,9 +970,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: CharacterSelectionMenu
   settingsWindow: {fileID: 47811080}
-  settingsButton: {fileID: 1893532781}
-  playButton: {fileID: 1690120696}
-  quitButton: {fileID: 263548401}
+  settingsFirstButton: {fileID: 1792839091}
+  closeSettingsFirstButton: {fileID: 1893532779}
 --- !u!114 &1495612433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,17 +1057,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1589459157 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4730442685365553721, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
-  m_PrefabInstance: {fileID: 4730442685198028034}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1690120694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,6 +1203,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690120694}
   m_CullTransparentMesh: 1
+--- !u!1 &1792839091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4730442685365553723, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
+  m_PrefabInstance: {fileID: 4730442685198028034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1799054006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,18 +1641,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1495612436}
     m_Modifications:
+    - target: {fileID: 4730442684593582524, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730442684593582524, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4730442685226895114, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
       propertyPath: m_Name
       value: SettingsWindow
       objectReference: {fileID: 0}
-    - target: {fileID: 4730442685226895115, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
-      propertyPath: musiqueSlider
-      value: 
-      objectReference: {fileID: 1589459157}
-    - target: {fileID: 4730442685226895115, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
-      propertyPath: effetsSonnoresSlider
-      value: 
-      objectReference: {fileID: 1124244250}
     - target: {fileID: 4730442685226895118, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1755,17 +1737,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4730442685247931436, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730442685247931436, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730442685586608358, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730442685586608358, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730442685586608358, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4730442686134377160, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1495612432}
-    - target: {fileID: 4730442686134377160, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseSettingsButton
+    - target: {fileID: 4730442686173605631, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4730442686134377160, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainMenu, Assembly-CSharp
+    - target: {fileID: 4730442686173605631, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730442686173605631, guid: ec8f2028d599748188f40750aeea01e0, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec8f2028d599748188f40750aeea01e0, type: 3}

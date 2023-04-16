@@ -4,22 +4,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 
 public class MainMenu : MonoBehaviour
 {
     public string sceneToLoad;
     public GameObject settingsWindow;
-    public Button settingsButton;
-    public Button playButton;
-    public Button quitButton;
+    
+    public GameObject settingsFirstButton, closeSettingsFirstButton;
 
 
     void Update()
     {
         if (settingsWindow.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {
-           CloseSettingsButton();
+            CloseSettingsButton();
         }
     }
 
@@ -31,18 +31,17 @@ public class MainMenu : MonoBehaviour
     public void SettingsButton()
     {
         settingsWindow.SetActive(true);
-        playButton.interactable = false;
-        quitButton.interactable = false;
-        settingsButton.interactable = false;
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(settingsFirstButton);
     }
 
     public void CloseSettingsButton()
     {
         settingsWindow.SetActive(false);
-        playButton.interactable = true;
-        quitButton.interactable = true;
-        settingsButton.interactable = true;
-        settingsButton.Select();
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(closeSettingsFirstButton);
     }
 
     public void QuitGame()

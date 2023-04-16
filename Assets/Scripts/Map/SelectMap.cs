@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -15,10 +17,31 @@ public class SelectMap : MonoBehaviour
     private int selectedOption = 0;
     private int index;
 
+    float AxisX;
+    Vector2 Axis;
+
     // Start is called before the first frame update
     void Start()
     {
         UpdateMap(selectedOption);
+    }
+
+    private void OnSelect(InputValue val)
+    {
+        if (SceneManager.GetActiveScene().name == "MapSelectionMenu")
+        {
+            Axis = val.Get<Vector2>();
+            AxisX = Axis.x;
+
+            if (AxisX > 0)
+            {
+                NextOption();
+            }
+            if (AxisX < 0)
+            {
+                BackOption();
+            }
+        }
     }
 
     public void NextOption()
