@@ -7,6 +7,12 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField] private float movementSpeed;
+    
+    private Transform transform;
+    private Animator animator;
+    private bool isAttacking = false;
+
+
     public BallBehavior ball;
 
     private bool isSpecial = false;
@@ -29,6 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         ball = GameObject.Find("Ball").GetComponent<BallBehavior>();
+        animator = GetComponent<Animator>();
+        transform = GetComponent<Transform>();
     }
 
     private void FixedUpdate()
@@ -46,6 +54,13 @@ public class PlayerController : MonoBehaviour
     {
         attack = val.Get<Vector2>();
         attack.Normalize();
+        
+        if (!isAttacking)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -90 + Mathf.Atan2(attack.y, attack.x) * Mathf.Rad2Deg);
+            animator.SetTrigger("Attack");
+        }
+        isAttacking = true;
     }
 
     private void OnSpecial()
@@ -60,6 +75,11 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
             rb.MovePosition(rb.position + move * Time.fixedDeltaTime * movementSpeed); //moves according to OnMove actions
+            
+        if (!isAttacking)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -90 + Mathf.Atan2(move.y, move.x) * Mathf.Rad2Deg);
+        }
     }
 
     private void Attack()
@@ -86,6 +106,7 @@ public class PlayerController : MonoBehaviour
                         {
                             //si la balle ne vient pas d'etre frapper (pour eviter qu'elle parte a mach20 apres 2s de match)
                             //alors on la rend non frappable, l'accelere en la renvoyant dans l'autre sens, puis on la rend de nouveau frappable apres 1/2s
+                            
                             StartCoroutine(Hit());
 
                             if (SpecialCharge < 4) SpecialCharge++;
@@ -105,7 +126,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator Hit()
     {
         ball.SetHit(true);
-        ball.SetSpeed(new Vector2(-1.5f * ball.GetSpeed().x, -1.5f * ball.GetSpeed().y));
+        //ball.SetSpeed(new Vector2(-1.5f * ball.GetSpeed().x, -1.5f * ball.GetSpeed().y));
+        ball.SetSpeed(new Vector2(1.5f * attack.x * ball.GetSpeed().magnitude, 1.5f * attack.y * ball.GetSpeed().magnitude));
         yield return new WaitForSeconds(0.5f);
         ball.SetHit(false);
     }
@@ -124,6 +146,12 @@ public class PlayerController : MonoBehaviour
         ball.SetSpeed(TempBallSpeed);
         ball.GetRb().gameObject.SetActive(true);
         Debug.Log("Time's out");
+    }
+
+    
+    public void endAttack()
+    {
+        isAttacking = false;
     }
 }
 

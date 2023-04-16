@@ -8,6 +8,8 @@ public class PlayerInvoc : MonoBehaviour
     public PlayerConfig playerConfig {get; set;}
     [SerializeField]
     private SpriteRenderer artworkSprite;
+    [SerializeField]
+    private Animator animator;
     public CharacterDatabase characterDB;
 
 
@@ -16,5 +18,6 @@ public class PlayerInvoc : MonoBehaviour
     playerConfig = pc;
     Character character = characterDB.GetCharacter(playerConfig.character);
     artworkSprite.sprite = character.characterSprite;
+    animator.runtimeAnimatorController = character.characterAnimator;
     }
 }
