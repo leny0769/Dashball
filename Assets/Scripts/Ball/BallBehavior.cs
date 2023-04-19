@@ -8,6 +8,9 @@ public class BallBehavior : MonoBehaviour
     private Rigidbody2D rb;
     private bool isHit = false;
 
+    public AudioSource audioSource;
+    public AudioClip sound;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,6 +29,8 @@ public class BallBehavior : MonoBehaviour
             Destroy(other.gameObject);
         else //obstacle
         {
+            //audioSource.PlayOneShot(sound);
+
             Vector2 hit = other.contacts[0].normal;
             float angle = Vector2.Angle(hit, Vector2.up);
 
