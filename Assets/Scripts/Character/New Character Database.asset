@@ -19,3 +19,9 @@ MonoBehaviour:
   - characterName: Basketitos
     characterSprite: {fileID: 21300000, guid: 52be07f01281cfe46ac4a896f3beb172, type: 3}
     characterAnimator: {fileID: 9100000, guid: b5168440f663ce54a86589000946db3e, type: 2}
+  - characterName: Tennisto
+    characterSprite: {fileID: 21300000, guid: f52861f3d77e3f149987d231c6ac1e15, type: 3}
+    characterAnimator: {fileID: 9100000, guid: b5168440f663ce54a86589000946db3e, type: 2}
+  - characterName: Hockeyman
+    characterSprite: {fileID: 21300000, guid: ede99232378348544b14a4238774bac6, type: 3}
+    characterAnimator: {fileID: 9100000, guid: b5168440f663ce54a86589000946db3e, type: 2}
