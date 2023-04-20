@@ -124,8 +124,15 @@ public class PlayerController : MonoBehaviour
     IEnumerator Hit()
     {
         ball.SetHit(true);
-        //ball.SetSpeed(new Vector2(-1.5f * ball.GetSpeed().x, -1.5f * ball.GetSpeed().y));
-        ball.SetSpeed(new Vector2(1.5f * attack.x * ball.GetSpeed().magnitude, 1.5f * attack.y * ball.GetSpeed().magnitude));
+        if(attack.x != 0.0f && attack.y != 0.0f)
+        {
+            ball.SetSpeed(new Vector2(1.2f * attack.x * ball.GetSpeed().magnitude, 1.2f * attack.y * ball.GetSpeed().magnitude));
+
+        }
+        else
+        {
+            ball.SetSpeed(new Vector2(-1.2f * ball.GetSpeed().x, -1.2f * ball.GetSpeed().y));
+        }
         audioSource.PlayOneShot(sound);
         yield return new WaitForSeconds(0.5f);
         ball.SetHit(false);
