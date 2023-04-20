@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3297ab9e6f669ac44a13548da639df20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  sound: {fileID: 0}
+  audioSource: {fileID: -3153572602170394295}
+  sound: {fileID: 8300000, guid: 67cfba7f10933eb40aeee3418ee38ab5, type: 3}
 --- !u!96 &1657892673151676017
 TrailRenderer:
   serializedVersion: 2

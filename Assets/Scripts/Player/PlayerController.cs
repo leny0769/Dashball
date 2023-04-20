@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnSpecial()
     {
-        if (SpecialCharge ==4 )
+        if (SpecialCharge == 4)
         {
             SpecialCharge = 0;
             isSpecial = true;

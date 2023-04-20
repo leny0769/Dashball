@@ -29,7 +29,7 @@ public class BallBehavior : MonoBehaviour
             Destroy(other.gameObject);
         else //obstacle
         {
-            //audioSource.PlayOneShot(sound);
+            audioSource.PlayOneShot(sound);
 
             Vector2 hit = other.contacts[0].normal;
             float angle = Vector2.Angle(hit, Vector2.up);
