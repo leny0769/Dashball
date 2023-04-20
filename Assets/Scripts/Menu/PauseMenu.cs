@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0;
         gameIsPaused = true;
+
         EventSystem.current.SetSelectedGameObject(pauseFirstButton);
     }
 
@@ -34,11 +36,15 @@ public class PauseMenu : MonoBehaviour
     }
 
 
-    void OnPause()
+    public void OnPause()
     {
-        if (gameIsPaused)
+        if (gameIsPaused && !settingsWindow.activeSelf)
         {
             Resume();
+        }
+        else if (gameIsPaused && settingsWindow.activeSelf)
+        {
+            CloseSettingsWindow();
         }
         else
         {
@@ -61,7 +67,7 @@ public class PauseMenu : MonoBehaviour
         settingsWindow.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(settingsFirstButton);
+        EventSystem.current.SetSelectedGameObject(closeSettingsFirstButton);
     }
 
 }

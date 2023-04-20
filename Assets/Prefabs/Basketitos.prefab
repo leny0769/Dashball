@@ -47,7 +47,6 @@ GameObject:
   - component: {fileID: 2143214372603148144}
   - component: {fileID: 4715809958161365513}
   - component: {fileID: 1787229705}
-  - component: {fileID: 1787229704}
   - component: {fileID: 595502190946819764}
   m_Layer: 0
   m_Name: Basketitos
@@ -227,6 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   artworkSprite: {fileID: 1246307418627922740}
   animator: {fileID: 595502190946819764}
+  playerController: {fileID: 586234735256312815}
   characterDB: {fileID: 11400000, guid: 0feb89773d2104aae9ad3cbcc404bcaf, type: 2}
 --- !u!82 &1787229705
 AudioSource:
@@ -324,20 +324,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1787229704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6159397117343696525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f8feb49695544ff8d778b32ff0701b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 0}
-  settingsWindow: {fileID: 0}
 --- !u!95 &595502190946819764
 Animator:
   serializedVersion: 4

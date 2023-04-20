@@ -110,8 +110,6 @@ public class PlayerController : MonoBehaviour
                             StartCoroutine(Hit());
 
                             if (SpecialCharge < 4) SpecialCharge++;
-
-                            audioSource.PlayOneShot(sound);
                         }
                         else
                         {
@@ -128,6 +126,7 @@ public class PlayerController : MonoBehaviour
         ball.SetHit(true);
         //ball.SetSpeed(new Vector2(-1.5f * ball.GetSpeed().x, -1.5f * ball.GetSpeed().y));
         ball.SetSpeed(new Vector2(1.5f * attack.x * ball.GetSpeed().magnitude, 1.5f * attack.y * ball.GetSpeed().magnitude));
+        audioSource.PlayOneShot(sound);
         yield return new WaitForSeconds(0.5f);
         ball.SetHit(false);
     }
@@ -152,6 +151,11 @@ public class PlayerController : MonoBehaviour
     public void endAttack()
     {
         isAttacking = false;
+    }
+
+    void OnPause()
+    {
+        GameObject.Find("GameManager").GetComponent<PauseMenu>().OnPause();
     }
 }
 

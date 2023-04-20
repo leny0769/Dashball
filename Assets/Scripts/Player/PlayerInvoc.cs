@@ -10,14 +10,17 @@ public class PlayerInvoc : MonoBehaviour
     private SpriteRenderer artworkSprite;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private PlayerController playerController;
     public CharacterDatabase characterDB;
 
 
     public void PlayerInit(PlayerConfig pc)
     {
-    playerConfig = pc;
-    Character character = characterDB.GetCharacter(playerConfig.character);
-    artworkSprite.sprite = character.characterSprite;
-    animator.runtimeAnimatorController = character.characterAnimator;
+        playerConfig = pc;
+        Character character = characterDB.GetCharacter(playerConfig.character);
+        artworkSprite.sprite = character.characterSprite;
+        animator.runtimeAnimatorController = character.characterAnimator;
+        playerController.sound = character.sound;
     }
 }
