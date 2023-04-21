@@ -48,6 +48,7 @@ public class PlayerConfig
         index = pi.playerIndex;
         input = pi;
         win = 0;
+        device = pi.devices[0];
     }
 
     public PlayerInput input {get; set;}
@@ -57,5 +58,7 @@ public class PlayerConfig
     public int character {get; set;}
 
     public int win {get; set;}
+
+    public InputDevice device {get; set;}
 
 }

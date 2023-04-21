@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class InitializeLevel : MonoBehaviour
 {
@@ -18,8 +19,14 @@ public class InitializeLevel : MonoBehaviour
         playerConfigs = Config.Instance.GetPlayerConfigs().ToArray();
         for(int i =0; i< playerConfigs.Length;i++)
         {
-            var player = Instantiate(playerPrefab,playerSpawns[i].position,playerSpawns[i].rotation,gameObject.transform);
+            
+            PlayerInput player;
+                player = PlayerInput.Instantiate(playerPrefab, pairWithDevice: playerConfigs[i].device);
+                player.transform.position = playerSpawns[i].position;
+                player.transform.rotation = playerSpawns[i].rotation;
+            
             player.GetComponent<PlayerInvoc>().PlayerInit(playerConfigs[i]);
+            //player = PlayerInput.Instantiate(playerPrefab, controlScheme: "Gamepad", pairWithDevice: Gamepad.all[0]);
         }
     }
 
